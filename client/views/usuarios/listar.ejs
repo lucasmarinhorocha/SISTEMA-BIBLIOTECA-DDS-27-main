@@ -1,10 +1,67 @@
 <!-- IMPORTAÇÃO DO HEADER -->
 <%- include('../partials/header') %>
 
-    <main class="bg-info container my-2 flex-grow-1">
-        <h1 style="color: white;"> 
+    <main class=" container my-2 flex-grow-1">
+        <h1 > 
             ESTOU NA PÁGINA DE LISTAR OS USUÁRIOS 
         </h1>
+
+        <!-- BOTÃO PARA PAGINA DE CADASTRO -->
+        <a href="/usuarios/cadastrar">
+            <button class="btn-solid theme-accent">+ Novo usuário</button>
+        </a>
+
+        <!-- Tabela com os Dados dos usuarios -->
+
+        <table class="table mt-5 table-bordered border-danger">
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Emeil</th>
+                    <th>Senha</th>
+                    <th>Perfil</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- Laço de repetição para interagir com a lista vindo do backend -->
+
+                <% listaUsuarios.forEach(user => { %>
+                 <!-- Lista usuarios - lista vinda do banco -->
+
+                 <!-- user - cada indice da lista "listaUsuarios" -->
+
+                 <tr>
+                    <td> <%= user.id_usuario %></td>
+                    <td><%= user.nome %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.senha %></td>
+                    <td><%= user.perfil %></td>
+                    <td class=" d-flex justify-content-center g-3">
+                        <!-- botão de editar -->
+                         <a href="usuarios/editar/<%= user.id_usuario %>">
+                            <button class="btn-solid theme-warning">
+                                Editar
+                            </button>
+                         </a>
+
+                         <!-- Botão de excluir -->
+                                <form
+        action="usuarios/deletar/<%= user. id_usuario %>" method="post"
+        onsubmit="return confirm('deseja realmente excluir esse usuário?')">
+        <button type="submit" class="btn-solid theme-danger"> Excluir </button>
+        </form>
+                    </td>
+                 </tr>
+                <% }) %>
+            </tbody>
+
+        </table>
+
     </main>
 
 <!-- IMPORTAÇÃO DO FOOTER -->

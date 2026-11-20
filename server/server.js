@@ -40,6 +40,11 @@ app.get("/login", (req, res) => {
 // TRAZ AS CONFIGURAÇÕES DO BANCO
 const pool = require("./config/db.js");
 
+// ROTA 404 - CASO A ROTA NÃO EXISTA
+app.use((req, res) => {
+    res.status(404).render("404", { url: req.originalUrl });
+});
+
 // FORÇA A CONEXÃO COM O BANCO
 (async () =>{
         try{

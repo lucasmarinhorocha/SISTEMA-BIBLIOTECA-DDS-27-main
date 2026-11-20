@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<main class="login-container">
+  <div class="card card-dialog text-center">
+    <h1 class="mt-0">404</h1>
+    <h2 class="mt-2">Essa rota não existe</h2>
+
+    <p class="text-principal fs-5 my-3">
+      O endereço <strong><%= url %></strong> não foi encontrado no sistema.
+    </p>
+
+    <div class="d-flex gap-2 justify-content-center mt-3">
+      <button onclick="window.history.back()" class="btn btn-warning text-black">
+        Voltar
+      </button>
+      <a href="/" class="btn btn-primary">
+        Ir para o início
+      </a>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
