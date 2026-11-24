@@ -4,8 +4,17 @@ const db = require("../config/db.js")
 // EXPORTAR AS FUNÇÕES DO MODEL
 module.exports = {
     // LOGIN    
-    login : () => {
-        console.log("LOGIN USUÁRIO FUNCIONANDO");
+    login : async (email,senha) => {
+                // VARIÁVEL PRA GUARDAR O COMANDO SQL
+
+        const sql = "SELECT * FROM tb_usuarios where email = ? and senha = ?"
+
+        // EXECUTA O SQL
+
+        const [resultado] = await db.execute(sql, [email,senha])
+
+        // RETORNA PRO CONTROLLER O RESULTADO
+        return resultado[0] || null
     },
     // CRUD
     // CREATE
@@ -31,11 +40,48 @@ module.exports = {
         return linhas
     },
     // UPDATE
-    atualizarUsuario: () =>{
-        console.log("ATUALIZEI UM USUÁRIO");
+    atualizarUsuario: async (id,nome,email,senha,perfil) =>{
+      
+        // variavel para guarda o comando sql
+
+        const sql = 'UPDATE tb_usuarios SET nome = ?, email = ?, senha = ?, perfil = ? WHERE id_usuario = ?'
+
+        // executa o sql
+
+        const[resultado] = await db.execute(sql,[nome,email,senha,perfil,id])
+
+
+        // retorna pro controller o resultado
+
+        return resultado.affectedRows
     },
     // DELETE
-    deletarUsuario: () => {
-        console.log("APAGUEI UM USUÁRIO");
-    }
+    deletarUsuario: async(id) => {
+  
+     // VARIÁVEL PRA GUARDAR O COMANDO SQL
+       const sql = 'DELETE FROM tb_usuarios WHERE id_usuario = ?';
+     // EXECUTA O SQL
+        const [resultado] = await db.execute(sql,[id])
+     // RETORNA PRO CONTROLLER O RESULTADO
+        return resultado.affectedRows
+    
+    },
+
+    // Editar
+    buscarPorId : async (id) => {
+        // variavel pra guardar o comando sql
+
+        const sql = 'SELECT * FROM tb_usuarios WHERE id_usuario = ?'
+        // execua o sql
+
+        const [resultado] = await db.execute(sql,[id])
+        // retoma ao controle o resultado
+        return resultado[0]
+
+    },
+
+
+
+    
+
 }

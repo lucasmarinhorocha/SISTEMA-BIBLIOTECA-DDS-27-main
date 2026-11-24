@@ -17,12 +17,12 @@
 
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nome</th>
-                    <th>Emeil</th>
-                    <th>Senha</th>
-                    <th>Perfil</th>
-                    <th>Ações</th>
+                    <th scope ="col">Id</th>
+                    <th scope ="col">Nome</th>
+                    <th scope ="col">Emeil</th>
+                    <th scope ="col">Senha</th>
+                    <th scope ="col">Perfil</th>
+                    <th scope ="col">Ações</th>
                 </tr>
             </thead>
 
@@ -43,18 +43,20 @@
                     <td><%= user.perfil %></td>
                     <td class=" d-flex justify-content-center g-3">
                         <!-- botão de editar -->
-                         <a href="usuarios/editar/<%= user.id_usuario %>">
-                            <button class="btn-solid theme-warning">
-                                Editar
-                            </button>
-                         </a>
+                    <!-- botão de editar -->
+<a href="/usuarios/editar/<%= user.id_usuario %>">
+    <button class="btn-solid theme-warning">
+        Editar
+    </button>
+</a>
 
                          <!-- Botão de excluir -->
-                                <form
-        action="usuarios/deletar/<%= user. id_usuario %>" method="post"
-        onsubmit="return confirm('deseja realmente excluir esse usuário?')">
-        <button type="submit" class="btn-solid theme-danger"> Excluir </button>
-        </form>
+    <!-- Botão de excluir -->
+                         <form
+                            action="/usuarios/deletar/<%= user.id_usuario %>" method="post"
+                            onsubmit="return confirm('deseja realmente excluir esse usuário?')">
+                            <button type="submit" class="btn-solid theme-danger"> Excluir </button>
+                         </form>
                     </td>
                  </tr>
                 <% }) %>

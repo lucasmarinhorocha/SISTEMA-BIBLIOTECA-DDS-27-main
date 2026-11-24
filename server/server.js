@@ -23,6 +23,24 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
+// configurações do express-session
+const session = require("express-session")
+app.use(session({ 
+    secret: 'cr7',
+    resave: false,
+    saveUninitialized: false
+}))
+
+// disponibiliza o usuario da sessao para o EJS usuar
+// DISPONIBILIZA O USUÁRIO DA SESSÃO PARA O EJS USAR
+app.use((req, res, next) => {
+res.locals.usuario = req.session?.usuario || null;
+req.usuario = req.session?.usuario || null;
+next();
+
+
+})
+
 // CRIAÇÃO DAS ROTAS
 // IMPORTAR AS ROTAS DE USUÁRIO
 const usuarioRoutes = require("./routes/usuarioRoutes.js")
@@ -34,6 +52,10 @@ app.get("/", (req, res) => {
 })
 
 app.get("/login", (req, res) => {
+    
+    if (req.session.usuario){
+        req.session.destroy()
+    }
     res.render('login')
 })
 
