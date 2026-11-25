@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<main class="container my-2 flex-grow-1">
+
+    <h1>Edição de livro</h1>
+
+    <form
+        action="/livros/editar/<%= livroEditado.id_livro %>"
+        method="post"
+    >
+
+     
+
+        <div class="form-group">
+            <label for="esta_disponivel">
+                Disponibilidade:
+            </label>
+
+            <select
+                name="esta_disponivel"
+                id="esta_disponivel"
+                class="form-control"
+            >
+                <option
+                    value="1"
+                    <%= livroEditado.esta_disponivel == 1
+                        ? "selected"
+                        : "" %>
+                >
+                    Disponível
+                </option>
+
+                <option
+                    value="0"
+                    <%= livroEditado.esta_disponivel == 0
+                        ? "selected"
+                        : "" %>
+                >
+                    Indisponível
+                </option>
+            </select>
+        </div>
+
+        <button
+            type="submit"
+            class="btn-subtle theme-success mt-3"
+        >
+            Salvar alteração
+        </button>
+
+    </form>
+
+</main>
+
+<%- include('../partials/footer') %>

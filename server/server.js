@@ -46,6 +46,11 @@ next();
 const usuarioRoutes = require("./routes/usuarioRoutes.js")
 app.use("/usuarios", usuarioRoutes)
 
+
+const livroRoutes = require("./routes/livroRoutes.js")
+
+app.use("/livros", livroRoutes)
+
 // ROTAS PÚBLICAS
 app.get("/", (req, res) => {
     res.render('index')

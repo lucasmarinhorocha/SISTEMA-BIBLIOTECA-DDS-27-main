@@ -63,7 +63,20 @@
 
 
 
-               <!-- Condição se tiver usuario logado -->
+               <!-- Condição se n tiver usuario logado -->
+
+               <% if (!usuario){ %> 
+              
+              <li class="nav-item d-flex align-items-center gap-2">
+    <b>Fazer login</b>
+    <a href="/login">
+      <button class="btn-solid theme-danger">Login</button>
+    </a>
+  </li>
+<% } %>
+
+ <!-- Condição se n tiver usuario logado -->
+  
                <% if (usuario) { %>
   <li class="nav-item d-flex align-items-center gap-2">
     <b><%= usuario.nome %></b>

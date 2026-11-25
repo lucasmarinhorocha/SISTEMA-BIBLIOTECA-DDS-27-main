@@ -1,0 +1,51 @@
+<!-- IMPORTAÇÃO DO HEADER -->
+<%- include('../partials/header') %>
+
+    <main class="container my-2 flex-grow-1">
+        <h1 class="fg-accent fs-6x1"> 
+            ESTOU NA PÁGINA DE CADASTRO DE LIVROS
+        </h1>
+
+        <!-- CRIAR O FORMULÁRIO DE CADASTRO -->
+        <div class="d-flex flex-column">
+            <!-- action - Fala a rota que o botão vai enviar as informações -->
+            <form action="/livros/CriarLivro" method="post">
+                
+                <!-- CAIXINHA DE TÍTULO -->
+                <div class="form-group">
+                    <label for="titulo"> Título: </label>
+                    <input type="text" name="titulo" id="titulo" class="form-control" required>
+                </div>
+
+                <!-- CAIXINHA DE AUTOR -->
+                <div class="form-group">
+                    <label for="autor"> Autor: </label>
+                    <input type="text" name="autor" id="autor" class="form-control" required>
+                </div>
+            
+                <!-- CAIXINHA DE ANO DE PUBLICAÇÃO -->
+                <div class="form-group">
+                    <label for="ano_publicacao"> Ano de publicação: </label>
+                    <input type="date" name="ano_publicacao" id="ano_publicacao" class="form-control" required>
+                </div>
+
+                <!-- CAIXINHA DE GÊNERO -->
+                <div class="form-group">
+                    <label for="genero"> Gênero: </label>
+                    <select name="genero" id="genero" class="form-control">
+                        <option value="Ação"> Ação</option>
+                        <option value="Comédia"> Comédia</option>
+                        <option value="Terror"> Terror</option>
+                    </select>
+                </div>
+
+                <!-- BOTÃO DE ENVIO -->
+                <button type="submit" class="btn-subtle theme-success mt-3"> 
+                    Enviar
+                </button>                
+            </form>
+        </div>
+    </main>
+
+<!-- IMPORTAÇÃO DO FOOTER -->
+<%- include('../partials/footer') %>
