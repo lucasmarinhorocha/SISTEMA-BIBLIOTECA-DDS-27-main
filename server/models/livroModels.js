@@ -69,5 +69,13 @@ module.exports = {
         ])
 
         return resultado.affectedRows
+    },
+
+    deletarlivro:async(id) =>{
+        const  sql = 'DELETE FROM tb_livros WHERE id_livro = ?';
+
+        const[deletar] = await db.execute(sql,[id])
+
+        return deletar.affectedRows
     }
 }

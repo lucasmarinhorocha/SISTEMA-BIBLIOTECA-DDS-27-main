@@ -20,4 +20,7 @@ router.get("/EditarLivro/:id", livrosControllers.renderizarEditar)
 // Salvar edição do livro
 router.post("/editar/:id", livrosControllers.editarlivro)
 
+router.post("/deletar/:id",livrosControllers.delete)
+
+
 module.exports = router
