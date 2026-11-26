@@ -102,5 +102,20 @@ module.exports = {
                 mensagem: "Erro ao editar o livro"
             })
         }
+    },
+
+    delete: async(req,res) => {
+        try {
+            const idDaURL = req.params.id
+             await livroModels.deletarlivro(idDaURL)
+
+             res.redirect('/livros')
+            
+
+        } catch (error) {
+            
+            console.log(error)
+            res.render("erro", { error, mensagem: "Erro ao deletar o livro" })
+         }
     }
 }

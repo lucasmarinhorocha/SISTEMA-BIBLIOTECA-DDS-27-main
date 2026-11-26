@@ -47,6 +47,14 @@
                         >
                             Editar
                         </a>
+
+                        <form action="/livros/deletar/<%= livro.id_livro %>" method="post"
+                            onsubmit="return confirm('deseja realmente excluir esse usuário?')">
+                       
+                            <button type="submit" class="btn-solid theme-danger">
+                                    Excluir
+                            </button>
+                        </form>
                     </td>
                 </tr>
 
