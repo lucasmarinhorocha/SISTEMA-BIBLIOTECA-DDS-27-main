@@ -49,6 +49,9 @@ app.use("/usuarios", usuarioRoutes)
 
 const livroRoutes = require("./routes/livroRoutes.js")
 
+const emprestimoRoutes = require("./routes/emprestimoRoutes.js")
+app.use("/emprestimos", emprestimoRoutes)
+
 app.use("/livros", livroRoutes)
 
 // ROTAS PÚBLICAS
@@ -85,11 +88,12 @@ app.use((req, res) => {
                 console.log(`Link: http://localhost:${port}`);
             })
         }
-        catch(erro){
-            // SE DEU ERRO, AVISA E ENCERRA A TENTATIVA
-            console.log("Erro ao conectar com o banco");
-            process.exit(1)
-        }
+     catch (erro) {
+    console.error("Erro detalhado ao conectar com o banco:")
+    console.error(erro)
+
+    process.exit(1)
+}
     }
 )()
 
