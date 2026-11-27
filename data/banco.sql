@@ -1,100 +1,92 @@
--- BANCO DA BIBLIOTECA
+create database db_petShop;
 
--- CRIAR O BANCO 
-CREATE DATABASE db_biblioteca;
-
--- UTILIZAR O BANCO
-USE db_biblioteca;
+USE db_petShop;
 
 -- CRIAR AS TABELAS
 
 -- CRIAR TABELA USUÁRIOS
-CREATE TABLE tb_usuarios(
+
+CREATE TABLE tb_usuario(
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     email VARCHAR(45),
     senha VARCHAR(15),
-    perfil VARCHAR(10)
+	telefone int(15)
 );
 
 
 -- TABELA LEITOR
-CREATE TABLE tb_leitores(
-	id_leitor INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    cpf VARCHAR(15),
-    telefone VARCHAR(15),
-    email VARCHAR(100)
-);
 
+ -- drop table tb_pet;
 
 -- TABELA LIVRO
-CREATE TABLE tb_livros(
-	id_livro INT PRIMARY KEY AUTO_INCREMENT,
-    titulo VARCHAR(100) NOT NULL,
-    autor VARCHAR(100),
-    ano_publicacao DATE,
-	genero VARCHAR(100),
-    esta_disponivel TINYINT
+CREATE TABLE tb_tutor(
+	id_tutor INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(100),
+	senha int(15)
 );
 
 
 -- TABELA EMPRÉSTIMO 
-CREATE TABLE tb_emprestimos(
-	id_emprestimo INT PRIMARY KEY AUTO_INCREMENT,
-    dt_emprestimo DATE,
-	dt_previsao_devolucao DATE,      
-	dt_devolucao DATE, 
-    leitor INT,
-    livro INT,
+CREATE TABLE tb_pet(
+	
+	id_pet INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+   raca varchar(50),
+dono int,
+tutor int,
     -- CHAVES ESTRANGEIRAS
-    FOREIGN KEY (leitor) REFERENCES tb_leitores(id_leitor),
-    FOREIGN KEY (livro)  REFERENCES tb_livros(id_livro)
+    FOREIGN KEY (dono) REFERENCES tb_usuario(id_usuario),
+    FOREIGN KEY (tutor)  REFERENCES tb_tutor(id_tutor)
 );
 
 
 -- INSERIR INFORMAÇÕES
 -- leitores
 INSERT INTO 
-	tb_leitores(nome, cpf, telefone, email)
+	tb_usuario(nome, email,senha,telefone)
 VALUES 
-	("Cristiano", "777", "7777", "cris@gmail.com"),
-	("Ronaldo", "777", "7777", "ronaldo@gmail.com"),
-	("Larissa", "5234", "123456789", "larissa@gmail.com");
+	("Cristiano", "cris@gmail.com", "7667", "2485649"),
+	("Ronaldo", "R@naldogmail.com", "123", "9656"),
+	("Larissa", "larissa@gmail.com", "123456789", "486");
 
 -- livros
 INSERT INTO 
-	tb_livros(titulo, autor, ano_publicacao, genero, esta_disponivel)
+	tb_tutor(nome,cpf,senha)
 VALUES
-	("Nárnia", "Aslan", "1900-08-25", "Fantasia", 1),	
-	("50 cores", "Fic", "2010-08-25", "Emoção", 1),	
-  	("Dicionário", "Aurélio", "1500-08-25", "Saber", 0);  
+	("Nárnia", "12345566", "123"),	
+	("50 cores", "435678", "321"),	
+  	("Dicionário", "6547886", "987");  
     
 -- emprestimos
 INSERT INTO 
-	tb_emprestimos(dt_emprestimo,dt_previsao_devolucao,dt_devolucao,leitor,livro)
+	tb_pet(nome,raca,dono,tutor)
 VALUES
-	(CURRENT_DATE(), "2026-12-12", "2026-12-13", 1,2),
-	(CURRENT_DATE(), "2026-12-12", "2026-12-13", 2,3),
-	(CURRENT_DATE(), "2026-12-12", "2026-12-13", 3,1);
+	("Alex","Cachorro",1,1),
+	("Mali","gato","2","2"),
+	("Tuca","papagaio","3","3");
     
     
 -- EXCLUIR TABELAS
 -- DROP TABLE tb_usuarios;
 
 -- BUSCAR INFORMAÇÕES
-SELECT * FROM tb_leitores;
-SELECT * FROM tb_livros;
-SELECT * FROM tb_emprestimos;
+SELECT * FROM tb_usuario;
+SELECT * FROM tb_tutor;
+SELECT * FROM tb_pet;
 
 -- JOINS - JUNTAR TABELAS 
 SELECT *
-	FROM tb_emprestimos AS emp
+	FROM tb_pet AS pet
 JOIN 
-	tb_leitores AS le
+	tb_usuario AS usu
 ON 
-	emp.leitor = le.id_leitor -- iguala o campo pelo nome das colunas
+	pet.dono = usu.id_usuario -- iguala o campo pelo nome das colunas
 JOIN
-	tb_livros AS li
+	tb_tutor AS tu
 ON
-	emp.livro = li.id_livro; -- aqui também
+	pet.tutor = tu.id_tutor; -- aqui também
+
+
+

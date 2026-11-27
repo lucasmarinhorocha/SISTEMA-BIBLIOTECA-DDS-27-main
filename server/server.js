@@ -29,7 +29,17 @@ app.use(session({
     secret: 'cr7',
     resave: false,
     saveUninitialized: false
-}))
+})) 
+
+// ROTAS PÚBLICAS
+app.get("/", (req, res) => {
+    res.render('index')
+})
+
+const usuarioRoutes = require("./routes/usuarioRoutes.js")
+app.use("/usuarios", usuarioRoutes)
+
+/*
 
 // disponibiliza o usuario da sessao para o EJS usuar
 // DISPONIBILIZA O USUÁRIO DA SESSÃO PARA O EJS USAR
@@ -43,8 +53,6 @@ next();
 
 // CRIAÇÃO DAS ROTAS
 // IMPORTAR AS ROTAS DE USUÁRIO
-const usuarioRoutes = require("./routes/usuarioRoutes.js")
-app.use("/usuarios", usuarioRoutes)
 
 
 const livroRoutes = require("./routes/livroRoutes.js")
@@ -54,11 +62,6 @@ app.use("/emprestimos", emprestimoRoutes)
 
 app.use("/livros", livroRoutes)
 
-// ROTAS PÚBLICAS
-app.get("/", (req, res) => {
-    res.render('index')
-})
-
 app.get("/login", (req, res) => {
     
     if (req.session.usuario){
@@ -66,7 +69,7 @@ app.get("/login", (req, res) => {
     }
     res.render('login')
 })
-
+*/
 // TRAZ AS CONFIGURAÇÕES DO BANCO
 const pool = require("./config/db.js");
 
